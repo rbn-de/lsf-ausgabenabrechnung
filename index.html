@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ausgabenabrechnung</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="button.css">
+    <link rel="stylesheet" href="input.css">
+</head>
+
+<body>
+    <div class="content-wrapper">
+        <div class="header">
+            <div class="header-left-section">
+                <p class="doctitle">Ausgabenbeleg LSF-Wesel-Rheinhausen e.V.</p>
+                <div class="general-info-container">
+                    <div class="general-info">
+
+                        <div class="general-date-row">
+                            <p class="general-date">Datum:</p>
+                            <input type="date" class="datepicker input">
+                        </div>
+
+                        <div class="general-billnumber-row">
+                            <p class="general-billnumber">Rechnungsnummer:</p>
+                            <input type="text" placeholder="Rechnungsnummer" class="general-billnumber-input input">
+                        </div>
+
+                        <div class="general-name-row">
+                            <p class="general-name">Name des Mitglieds:</p>
+                            <input type="text" placeholder="Name" class="general-name-input input">
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <img src="images/Logo.jpg" class="logo">
+        </div>
+
+        <div class="disclaimer-row">
+            <div class="disclaimer-container">
+                <p class="disclaimer">Rechnungen müssen auffolgende Rechnungsadresse ausgestellt werden:</p>
+                <p>LSF-Wesel-Rheinhausen</p>
+                <p>Postfach 100240</p>
+                <p>46462 Wesel</p>
+            </div>
+        </div>
+
+        <!-- Begin of Articlelist -->
+
+        <div class="article-list-wrapper">
+
+            <div class="article-list-container">
+                <div class="article-row">
+                    <form id="article-form">
+                        <table class="article-table">
+                            <tr>
+                                <th class="table-header">Artikelnummer</th>
+                                <th class="table-header">Beschreibung</th>
+                                <th class="table-header">Verwendung</th>
+                                <th class="table-header">Kostenstelle</th>
+                                <th class="table-header">Preis (€)</th>
+                            </tr>
+                            <tr>
+                                <td><input class="input" placeholder="Artikelnummer" type="text" name="articleNumber[]">
+                                </td>
+                                <td><input class="input" placeholder="Beschreibung" type="text" name="description[]">
+                                </td>
+                                <td><input class="input" placeholder="Verwendug" type="text" name="usage[]"></td>
+                                <td>
+                                    <select class="costcenter-selector" name="costCenter[]">
+                                        <option value="CostCenter1">Kostenstelle 1</option>
+                                        <option value="CostCenter2">Kostenstelle 2</option>
+                                        <!-- Weitere Kostenstellen-Optionen hier hinzufügen -->
+                                    </select>
+                                </td>
+                                <td><input class="input" placeholder="00,00€" type="number" step="0.01" name="amount[]"
+                                        oninput="calculateTotal()"></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+                <div class="article-final-row">
+                    <button class="add-row-btn" type="button" onclick="addRow()">&#xFF0B; Artikel
+                        hinzufügen</button>
+                    <p class="sum">Gesamtsumme: <span id="totalAmount">0.00 €</span></p>
+                </div>
+
+            </div>
+        </div>
+        <script>
+            function addRow() {
+                var table = document.querySelector("table");
+                var newRow = table.insertRow();
+                var columns = ["articleNumber", "description", "usage", "costCenter", "amount"];
+
+                for (var i = 0; i < columns.length; i++) {
+                    var cell = newRow.insertCell();
+                    if (columns[i] === "costCenter") {
+                        var select = document.createElement("select");
+                        select.name = columns[i] + "[]";
+                        select.classList.add("costcenter-selector");
+                        var options = ["Kostenstelle 1", "Kostenstelle 2"]; // Hier weitere Optionen hinzufügen
+                        for (var j = 0; j < options.length; j++) {
+                            var option = document.createElement("option");
+                            option.value = options[j];
+                            option.text = options[j];
+                            select.appendChild(option);
+                        }
+                        cell.appendChild(select);
+                    } else {
+                        var input = document.createElement("input");
+                        if (columns[i] === "amount") {
+                            input.type = "number";
+                            input.step = "0.01";
+                            input.addEventListener("input", calculateTotal);
+                        } else {
+                            input.type = "text";
+                        }
+                        input.name = columns[i] + "[]";
+                        input.classList.add("input"); // Hier wird die Klasse hinzugefügt
+
+                        switch (columns[i]) {
+                            case "articleNumber":
+                                input.placeholder = "Artikelnummer";
+                                break;
+
+                            case "description":
+                                input.placeholder = "Beschreibung";
+                                break;
+
+                            case "usage":
+                                input.placeholder = "Verwendung";
+                                break;
+
+                            case "amount":
+                                input.placeholder = "00,00 €";
+                                break;
+
+                        }
+                        cell.appendChild(input);
+                    }
+                }
+            }
+
+
+            function calculateTotal() {
+                var amounts = document.getElementsByName("amount[]");
+                var total = 0;
+
+                for (var i = 0; i < amounts.length; i++) {
+                    total += parseFloat(amounts[i].value) || 0;
+                }
+
+                document.getElementById("totalAmount").textContent = total.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.') + " €";
+            }
+        </script>
+
+
+        <!-- End of Articlelist -->
+
+
+        <div class="button-container">
+            <button class="send-btn">
+                <div class="svg-wrapper-1">
+                    <div class="svg-wrapper">
+                        <svg class="send-btn-svg" height="24" width="24" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0h24v24H0z" fill="none"></path>
+                            <path
+                                d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                                fill="currentColor"></path>
+                        </svg>
+                    </div>
+                </div>
+                <span class="btn-text-span">Send</span>
+            </button>
+        </div>
+    </div>
+</body>
+
+</html>

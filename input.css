@@ -1,0 +1,70 @@
+.input {
+    line-height: 28px;
+    border: 2px solid transparent;
+    border-bottom-color: #597894;
+    padding: .2rem 0;
+    outline: none;
+    background-color: transparent;
+    color: #0d0c22;
+    transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+
+.input:hover {
+    outline: none;
+    padding: .2rem 1rem;
+    border-radius: 1rem;
+    border-color: #7a9cc6;
+}
+
+.input:focus {
+    outline: none;
+    padding: .2rem 1rem;
+    border-radius: 1rem;
+    border-color: rgb(0, 164, 0)
+}
+
+.input::placeholder {
+    color: #777;
+}
+
+.input:focus::placeholder {
+    opacity: 0;
+    transition: opacity .3s;
+}
+
+
+
+.costcenter-selector {
+    line-height: 28px;
+    border: 2px solid;
+    border-bottom-color: #597894;
+    border-radius: 1em;
+    padding: .2rem 1rem;
+    outline: none;
+    background-color: transparent;
+    color: #0d0c22;
+    transition: .3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+
+.costcenter-selector:hover {
+    outline: none;
+    border-color: rgb(0, 97, 187)
+}
+
+.costcenter-selector:focus {
+    outline: none;
+    padding: .2rem 1rem;
+    border-radius: 1rem;
+    border-color: rgb(0, 164, 0)
+}
+
+.costcenter-selector::placeholder {
+    color: #777;
+}
+
+.costcenter-selector:focus::placeholder {
+    opacity: 0;
+    transition: opacity .3s;
+}

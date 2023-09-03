@@ -1,0 +1,147 @@
+body {
+    display: flex;
+    justify-content: center;
+    margin: 20px 20px;
+}
+
+p {
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+.content-wrapper {
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+}
+
+.header-left-section {
+    flex: 1;
+
+}
+
+.logo {
+    width: 200px;
+    height: 100%;
+}
+
+.doctitle {
+    font-weight: bold;
+    text-align: center;
+    font-size: 25px;
+}
+
+.general-info-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+
+}
+
+
+.general-date-row,
+.general-billnumber-row,
+.general-name-row {
+    display: flex;
+    align-items: center;
+}
+
+.general-date,
+.general-billnumber,
+.general-name {
+    width: 150px;
+}
+
+.datepicker,
+.general-billnumber-input,
+.general-name-input {
+    font-weight: bold;
+    font-size: 16px;
+    width: 200px;
+
+}
+
+.general-billnumber-row,
+.general-name-row {
+    margin-top: 20px;
+}
+
+.disclaimer-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.disclaimer-container {
+    text-align: center;
+}
+
+
+.disclaimer {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+
+.article-row {
+    margin-top: 50px;
+}
+
+.article-table {
+    margin: 0;
+}
+
+.article-list-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.table-header {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 100;
+}
+
+.input,
+.costcenter-selector {
+    text-align: center;
+}
+
+.article-final-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.add-row-btn {
+    border: none;
+    height: 35px;
+    width: 160px;
+    border-radius: 4px;
+    background-color: royalblue;
+    color: white;
+    font-weight: bold;
+    transition: width 0.1s ease-in-out;
+}
+
+.add-row-btn:hover {
+    transition: width 0.3s ease-in-out;
+    height: 35px;
+    width: 200px;
+}
+
+.add-row-btn:active {
+    width: 190px;
+    height: 30px;
+}
+
+.sum {
+    font-weight: bold;
+}
